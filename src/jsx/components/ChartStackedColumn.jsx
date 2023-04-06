@@ -244,10 +244,9 @@ function StackedColumnChart({
         x: 100,
       },
       tooltip: {
-        backgroundColor: '#fff',
-        borderColor: '#ccc',
         borderRadius: 0,
-        borderWidth: 1,
+        borderWidth: 0,
+        padding: 0,
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc

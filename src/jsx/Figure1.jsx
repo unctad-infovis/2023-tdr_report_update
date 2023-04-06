@@ -44,13 +44,13 @@ function Figure1() {
       <ChartStackedColumn
         idx="1"
         data={dataFigure}
-        note=""
+        note="DSSI-CF = Debt Service Suspension Initiative Common Framework"
         show_first_label
-        source="SOURCE"
+        source="UNCTAD"
         data_decimals={0}
-        subtitle="SUBTITLE"
+        subtitle="Number of countries spending more money on dept compared to selected sectors, 2019–2021 vs. 2012–2014"
         suffix="%"
-        title="TITLE"
+        title="There are more countries who spend more on debt than health and education"
         ylabel=""
       />
       )}
