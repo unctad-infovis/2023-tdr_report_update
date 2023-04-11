@@ -43,6 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 function StackedColumnChart({
   data, idx, note, source, subtitle, title, xlabel, ylabel, ymax, ymin
 }) {
+  data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
 
@@ -97,7 +98,7 @@ function StackedColumnChart({
         },
         type: 'column'
       },
-      colors: ['#009edb', '#72bf44', '#009edb', '#72bf44'],
+      colors: ['#a066aa', '#72bf44', '#009edb'],
       credits: {
         enabled: false
       },
@@ -132,22 +133,9 @@ function StackedColumnChart({
             duration: 3000,
           },
           cursor: 'pointer',
-          dataLabels: [{
+          dataLabels: {
             align: 'center',
-            enabled: true,
-            formatter() {
-              // eslint-disable-next-line react/no-this-in-sfc
-              if (this.colorIndex === 1) {
-                // eslint-disable-next-line react/no-this-in-sfc
-                return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">2012–2014</div>';
-              }
-              // eslint-disable-next-line react/no-this-in-sfc
-              if (this.colorIndex === 3) {
-                // eslint-disable-next-line react/no-this-in-sfc
-                return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">2019–2021</div>';
-              }
-              return '';
-            },
+            enabled: false,
             style: {
               color: 'rgba(0, 0, 0, 0.8)',
               fontFamily: 'Roboto',
@@ -157,7 +145,7 @@ function StackedColumnChart({
             },
             useHTML: true,
             verticalAlign: 'bottom'
-          }],
+          },
           events: {
             legendItemClick() {
               return false;
@@ -197,7 +185,7 @@ function StackedColumnChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 10
+              margin: 40
             }
           },
           condition: {
@@ -233,7 +221,7 @@ function StackedColumnChart({
       },
       title: {
         align: 'left',
-        margin: 10,
+        margin: 40,
         style: {
           color: '#000',
           fontSize: '30px',
@@ -246,12 +234,14 @@ function StackedColumnChart({
       tooltip: {
         borderRadius: 0,
         borderWidth: 0,
+        padding: 0,
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">${this.points[0].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[0].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[2].y} countries, 2019–2021</span></div><div class="tooltip_row"><span class="tooltip_label">${this.points[1].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[1].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[3].y} countries, 2019–2021</span></div></div>`;
+          console.log(this);
+          // eslint-disable-next-line react/no-this-in-sfc
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">2003–2007:</span> <span class="tooltip_value">${this.points[0].y}</span></div><div class="tooltip_row"><span class="tooltip_label">2015–2019:</span> <span class="tooltip_value">${this.points[1].y}</span></div><div class="tooltip_row"><span class="tooltip_label">2020–2022:</span> <span class="tooltip_value">${this.points[2].y}</span></div></div>`;
         },
-        padding: 0,
         shadow: false,
         shared: true,
         useHTML: true
@@ -261,7 +251,7 @@ function StackedColumnChart({
           description: xlabel
         },
         allowDecimals: false,
-        categories: ['Education', 'Health', 'Education', 'Health'],
+        categories: ['World', 'Developing economies (excl. China)', 'China'],
         crosshair: {
           color: 'transparent',
           width: 1
@@ -322,7 +312,7 @@ function StackedColumnChart({
           enabled: true,
           formatter() {
             // eslint-disable-next-line react/no-this-in-sfc
-            return `${this.total} countries`;
+            return `${this.total}`;
           },
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
@@ -331,7 +321,7 @@ function StackedColumnChart({
             fontWeight: 600
           }
         },
-        tickInterval: 10,
+        tickInterval: 2,
         title: {
           enabled: true,
           reserveSpace: true,
