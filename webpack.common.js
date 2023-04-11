@@ -73,7 +73,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'assets/img/', to: '../public/assets/img/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
-        { from: 'assets/data/Figure1 - data.csv', to: '../public/assets/data/2023-tdr_report_update_figure1.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
+        { from: 'assets/data/data - figure1.csv', to: '../public/assets/data/2023-tdr_report_update_figure1.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
+        { from: 'assets/data/data - figure2.csv', to: '../public/assets/data/2023-tdr_report_update_figure2.csv', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: 'src/font/', to: '../public/font/', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }},
         { from: './favicon.png', to: '../public', noErrorOnMissing: true, globOptions: { dot: true, gitignore: true, ignore: ['**/.DS_Store'] }}
       ]

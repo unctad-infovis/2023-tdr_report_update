@@ -102,7 +102,7 @@ function LineChart({
         type: 'line',
         zoomType: 'x'
       },
-      colors: ['#009edb', '#72bf44', '#eb1f48'],
+      colors: ['#000', '#009edb', '#72bf44'],
       credits: {
         enabled: false
       },
@@ -250,7 +250,7 @@ function LineChart({
       },
       title: {
         align: 'left',
-        margin: 40,
+        margin: 20,
         style: {
           color: '#000',
           fontSize: '30px',
@@ -299,8 +299,9 @@ function LineChart({
         lineColor: '#ccc',
         lineWidth: 0,
         opposite: false,
-        plotLines: [{
-          color: '#aaa096',
+        plotBands: [{
+          color: 'rgba(170, 160, 150, 0.2)',
+          from: Date.UTC(parseInt(2021, 10), 0, 1),
           label: {
             align: 'left',
             rotation: 0,
@@ -310,32 +311,12 @@ function LineChart({
               fontSize: '14px',
               fontWeight: 700
             },
-            text: 'Age of oil, automobile<br />and mass production',
+            text: 'Preliminary results',
             verticalAlign: 'top',
             x: 5,
             y: 30
           },
-          zIndex: 4,
-          value: Date.UTC(parseInt(1908, 10), 0, 1),
-          width: 1
-        }, {
-          color: '#aaa096',
-          label: {
-            align: 'left',
-            rotation: 0,
-            style: {
-              color: 'rgba(0, 0, 0, 0.8)',
-              fontFamily: 'Roboto',
-              fontSize: '14px',
-              fontWeight: 700,
-            },
-            text: 'Age of ICT',
-            verticalAlign: 'top',
-            x: 5,
-            y: 30
-          },
-          zIndex: 4,
-          value: Date.UTC(parseInt(1971, 10), 0, 1),
+          to: Date.UTC(parseInt(2022, 10), 0, 1),
           width: 1
         }],
         showLastLabel: true,
@@ -353,7 +334,7 @@ function LineChart({
           text: 'Year'
         }
       },
-      yAxis: [{
+      yAxis: {
         allowDecimals: allow_decimals,
         gridLineColor: 'rgba(124, 112, 103, 0.2)',
         gridLineDashStyle: 'shortdot',
@@ -369,15 +350,20 @@ function LineChart({
         },
         lineColor: 'transparent',
         lineWidth: 0,
-        max: 60000,
-        min: 0,
+        max: 250,
+        min: 70,
+        plotLines: [{
+          color: '#666',
+          value: 100,
+          width: 2
+        }],
         opposite: false,
         showFirstLabel: show_first_label,
         showLastLabel: true,
         tickAmount: 4,
-        tickInterval: 10000,
+        tickInterval: 10,
         title: {
-          enabled: true,
+          enabled: false,
           reserveSpace: true,
           style: {
             color: '#000',
@@ -385,45 +371,10 @@ function LineChart({
             fontSize: '16px',
             fontWeight: 400
           },
-          text: 'Real GDP, US dollars'
+          text: ''
         },
         type: 'linear'
-      }, {
-        allowDecimals: allow_decimals,
-        gridLineColor: 'rgba(124, 112, 103, 0.2)',
-        gridLineDashStyle: 'shortdot',
-        gridLineWidth: 1,
-        labels: {
-          reserveSpace: true,
-          style: {
-            color: '#eb1f48',
-            fontFamily: 'Roboto',
-            fontSize: '16px',
-            fontWeight: 400
-          }
-        },
-        lineColor: 'transparent',
-        lineWidth: 0,
-        max: 6,
-        min: 0,
-        opposite: true,
-        showFirstLabel: show_first_label,
-        showLastLabel: true,
-        tickAmount: 4,
-        tickInterval: 1,
-        title: {
-          enabled: true,
-          reserveSpace: true,
-          style: {
-            color: '#eb1f48',
-            fontFamily: 'Roboto',
-            fontSize: '16px',
-            fontWeight: 400
-          },
-          text: 'Tonnes, CO2'
-        },
-        type: 'linear'
-      }]
+      }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
   }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, suffix, title]);

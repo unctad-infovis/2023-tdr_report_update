@@ -10,16 +10,22 @@ function Figure2() {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
-  const cleanData = (data) => data.map((el) => {
-    // const labels = Object.keys(el).filter(val => val !== 'name').map(val => parseInt(val, 10));
+  const cleanData = (data) => data.map((el, i) => {
+    const labels = Object.keys(el).filter(val => val !== 'Name').map(val => Date.UTC(parseInt(val, 10), 0, 1));
     const values = Object.values(el).map(val => (parseFloat(val))).filter(val => !Number.isNaN(val));
 
     return ({
-      data: values,
+      data: values.map((e, j) => ({
+        x: labels[j],
+        y: e
+      })),
+      dashStyle: (i === 0) ? 'ShortDash' : 'Solid',
       label: {
         enabled: false
       },
-      name: el.Name
+      lineWidth: (i === 0) ? 3 : 5,
+      name: el.Name,
+      yAxis: 0
     });
   });
 
@@ -45,12 +51,12 @@ function Figure2() {
       <ChartLine
         idx="2"
         data={dataFigure}
-        note=""
+        note="Based on available corporate data from Akira Holding Foundation, Andersons Inc., Archer Daniels Midland Company, Bunge Ltd., Cargill Inc., CGB Enterprises, CHS Inc., Glencore Plc., Scoular Company, CMOC Group Ltd., COFCO Corporation, GrainCorp Ltd, OFI Group Ltd., OFI Group Ltd., Noble Group Ltd., Wilmar International Ltd."
         show_first_label
-        source=""
-        subtitle=""
+        source="UNCTAD secretariat calculations based on Orbis database"
+        subtitle="Median food traders' profuts and revenunes, 2019 = 100"
         suffix="%"
-        title=""
+        title="Profits of food traders have grown rapidly since 2020"
         ylabel=""
       />
       )}
