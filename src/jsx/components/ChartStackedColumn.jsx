@@ -246,12 +246,12 @@ function StackedColumnChart({
       tooltip: {
         borderRadius: 0,
         borderWidth: 0,
-        padding: 0,
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
           return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">${this.points[0].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[0].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[2].y} countries, 2019–2021</span></div><div class="tooltip_row"><span class="tooltip_label">${this.points[1].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[1].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[3].y} countries, 2019–2021</span></div></div>`;
         },
+        padding: 0,
         shadow: false,
         shared: true,
         useHTML: true
