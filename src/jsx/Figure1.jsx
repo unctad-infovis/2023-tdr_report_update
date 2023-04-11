@@ -17,7 +17,7 @@ function Figure1() {
       data: values,
       name: el.Name,
       showInLegend: !((i >= 2)),
-      stack: (i >= 2) ? 'stack1' : 'stack2',
+      stack: (i < 2) ? 'stack1' : 'stack2',
       xAxis: 0
     });
   });
@@ -50,7 +50,7 @@ function Figure1() {
         data_decimals={0}
         subtitle="Number of countries spending more money on dept compared to selected sectors, 2019–2021 vs. 2012–2014"
         suffix="%"
-        title="There are more countries who spend more on debt than health and education"
+        title="Countries spending more on debt than on health care and education have increased sharply"
         ylabel=""
       />
       )}

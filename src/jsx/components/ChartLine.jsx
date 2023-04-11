@@ -189,7 +189,7 @@ function LineChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 10
+              margin: 20
             }
           },
           condition: {
@@ -250,7 +250,7 @@ function LineChart({
       },
       title: {
         align: 'left',
-        margin: 20,
+        margin: 40,
         style: {
           color: '#000',
           fontSize: '30px',

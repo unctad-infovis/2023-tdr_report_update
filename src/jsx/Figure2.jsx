@@ -55,7 +55,7 @@ function Figure2() {
         show_first_label
         source="UNCTAD secretariat calculations based on Orbis database"
         subtitle="Median food traders' profits and revenunes, 2019 = 100"
-        title="Profits of food traders have grown rapidly since 2020"
+        title="Profits of food traders have grown rapidly"
         ylabel=""
       />
       )}

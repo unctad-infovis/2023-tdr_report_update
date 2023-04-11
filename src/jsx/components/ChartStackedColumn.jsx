@@ -137,12 +137,12 @@ function StackedColumnChart({
             enabled: true,
             formatter() {
               // eslint-disable-next-line react/no-this-in-sfc
-              if (this.colorIndex === 1) {
+              if (this.colorIndex === 0) {
                 // eslint-disable-next-line react/no-this-in-sfc
                 return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">2012–2014</div>';
               }
               // eslint-disable-next-line react/no-this-in-sfc
-              if (this.colorIndex === 3) {
+              if (this.colorIndex === 2) {
                 // eslint-disable-next-line react/no-this-in-sfc
                 return '<div class="datalabel" style="position: relative; top: 25px; left: -5px">2019–2021</div>';
               }
@@ -261,7 +261,7 @@ function StackedColumnChart({
           description: xlabel
         },
         allowDecimals: false,
-        categories: ['Education', 'Health', 'Education', 'Health'],
+        categories: ['Education', 'Health'],
         crosshair: {
           color: 'transparent',
           width: 1
@@ -309,6 +309,7 @@ function StackedColumnChart({
           }
         },
         endOnTick: false,
+        reversedStacks: false,
         lineColor: 'transparent',
         lineWidth: 0,
         max: ymax,

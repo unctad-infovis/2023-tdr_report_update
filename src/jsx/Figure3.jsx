@@ -52,7 +52,7 @@ function Figure3() {
         data_decimals={0}
         subtitle="Average growth rate 2002–2022"
         suffix=""
-        title="The growth rate is falling in all regions"
+        title="Economic growth rate is falling in all regions"
         ymin={0}
         ymax={12}
         ylabel=""
