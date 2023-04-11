@@ -197,7 +197,7 @@ function StackedColumnChart({
         rules: [{
           chartOptions: {
             title: {
-              margin: 0
+              margin: 10
             }
           },
           condition: {
@@ -233,7 +233,7 @@ function StackedColumnChart({
       },
       title: {
         align: 'left',
-        margin: 0,
+        margin: 10,
         style: {
           color: '#000',
           fontSize: '30px',

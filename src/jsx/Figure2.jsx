@@ -54,7 +54,7 @@ function Figure2() {
         note="Based on available corporate data from Akira Holding Foundation, Andersons Inc., Archer Daniels Midland Company, Bunge Ltd., Cargill Inc., CGB Enterprises, CHS Inc., Glencore Plc., Scoular Company, CMOC Group Ltd., COFCO Corporation, GrainCorp Ltd, OFI Group Ltd., OFI Group Ltd., Noble Group Ltd., Wilmar International Ltd."
         show_first_label
         source="UNCTAD secretariat calculations based on Orbis database"
-        subtitle="Median food traders' profuts and revenunes, 2019 = 100"
+        subtitle="Median food traders' profits and revenunes, 2019 = 100"
         suffix="%"
         title="Profits of food traders have grown rapidly since 2020"
         ylabel=""
