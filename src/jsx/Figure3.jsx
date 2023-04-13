@@ -55,7 +55,7 @@ function Figure3({ lang }) {
         subtitle={lang === 'fr' ? 'Taux de croissance moyens, 2002–2022' : (lang === 'es' ? 'Tasa media de crecimiento 2002-2022' : 'Average growth rate 2002–2022')}
         suffix=""
         title={lang === 'fr' ? 'Le taux de croissance économique diminue dans toutes les régions' : (lang === 'es' ? 'La tasa de crecimiento económico desciende en todas las regiones' : 'Economic growth rate is falling in all regions')}
-        xcategories={lang === 'fr' ? ['Monde', 'Pays en développement (sans la  Chine)', 'Chine'] : (lang === 'es' ? ['Mundo', 'Economías en desarrollo (excluida China)', 'China'] : ['World', 'Developing economies (excl. China)', 'China'])}
+        xcategories={lang === 'fr' ? ['Monde', 'Pays en développement<br />(sans la  Chine)', 'Chine'] : (lang === 'es' ? ['Mundo', 'Economías en desarrollo<br />(excluida China)', 'China'] : ['World', 'Developing economies<br />(excl. China)', 'China'])}
         xlabel={lang === 'fr' ? 'Année' : (lang === 'es' ? 'Año' : 'Year')}
         ylabel=""
         ymax={14}
