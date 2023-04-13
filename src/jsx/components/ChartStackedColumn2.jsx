@@ -41,7 +41,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function StackedColumnChart({
-  data, idx, note, source, subtitle, title, xlabel, ylabel, ymax, ymin
+  data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
 }) {
   data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
@@ -57,7 +57,7 @@ function StackedColumnChart({
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '14px'
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
         useHTML: true,
         verticalAlign: 'bottom',
         x: 0
@@ -251,7 +251,7 @@ function StackedColumnChart({
           description: xlabel
         },
         allowDecimals: false,
-        categories: ['World', 'Developing economies (excl. China)', 'China'],
+        categories: xcategories,
         crosshair: {
           color: 'transparent',
           width: 1
@@ -339,7 +339,7 @@ function StackedColumnChart({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [data, idx, note, source, subtitle, title, xlabel, ylabel, ymax, ymin]);
+  }, [data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -366,6 +366,7 @@ StackedColumnChart.propTypes = {
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
+  xcategories: PropTypes.instanceOf(Array).isRequired,
   xlabel: PropTypes.string,
   ylabel: PropTypes.string,
   ymax: PropTypes.number,

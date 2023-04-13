@@ -43,7 +43,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function LineChart({
-  allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, title
+  allow_decimals, data, idx, lang, line_width, note, show_first_label, source, subtitle, xlabel, title
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -58,7 +58,7 @@ function LineChart({
           fontFamily: 'Roboto',
           fontSize: '14px'
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /><span>${note}</span>`) : ''}`,
         useHTML: true,
         verticalAlign: 'bottom',
         x: 0
@@ -271,7 +271,7 @@ function LineChart({
           const rows = [];
           rows.push(values.map((point, i) => `<div><span class="tooltip_label">${(point[0]) ? `${point[0]}: ` : ''}</span> <span class="tooltip_value">${roundNr(point[1], (i === 2) ? 1 : 0).toLocaleString('en-US')}</span></div>`).join(''));
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">Year ${(new Date(this.x)).getFullYear()}</h3><div class="tooltip_row">${rows}</div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${xlabel} ${(new Date(this.x)).getFullYear()}</h3><div class="tooltip_row">${rows}</div></div>`;
         },
         padding: 0,
         shadow: false,
@@ -310,7 +310,7 @@ function LineChart({
               fontSize: '14px',
               fontWeight: 700
             },
-            text: 'Preliminary results',
+            text: (lang === 'fr') ? 'Résultats préliminaires' : (lang === 'es' ? 'Resultados preliminares' : 'Preliminary results'),
             verticalAlign: 'top',
             x: 5,
             y: 30
@@ -330,7 +330,7 @@ function LineChart({
             fontSize: '16px',
             fontWeight: 400
           },
-          text: 'Year'
+          text: xlabel
         }
       },
       yAxis: {
@@ -349,8 +349,8 @@ function LineChart({
         },
         lineColor: 'transparent',
         lineWidth: 0,
-        max: 250,
-        min: 70,
+        max: 260,
+        min: 80,
         plotLines: [{
           color: '#666',
           value: 100,
@@ -376,7 +376,7 @@ function LineChart({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [allow_decimals, data, idx, line_width, note, show_first_label, source, subtitle, title]);
+  }, [allow_decimals, data, idx, lang, line_width, note, show_first_label, source, subtitle, xlabel, title]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -400,12 +400,14 @@ LineChart.propTypes = {
   allow_decimals: PropTypes.bool,
   data: PropTypes.instanceOf(Array).isRequired,
   idx: PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
   line_width: PropTypes.number,
   note: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   show_first_label: PropTypes.bool,
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  xlabel: PropTypes.string.isRequired
 };
 
 LineChart.defaultProps = {

@@ -41,7 +41,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function StackedColumnChart({
-  data, idx, note, source, subtitle, title, xlabel, ylabel, ymax, ymin
+  data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
 }) {
   const chartRef = useRef();
   const isVisible = useIsVisible(chartRef, { once: true });
@@ -56,7 +56,7 @@ function StackedColumnChart({
           color: 'rgba(0, 0, 0, 0.8)',
           fontSize: '14px'
         },
-        text: `<em>Source:</em> ${source} ${note ? (`<br /><em>Note:</em> <span>${note}</span>`) : ''}`,
+        text: `${source} ${note ? (`<br /> <span>${note}</span>`) : ''}`,
         useHTML: true,
         verticalAlign: 'bottom',
         x: 0
@@ -249,7 +249,7 @@ function StackedColumnChart({
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">${this.points[0].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[0].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[2].y} countries, 2019–2021</span></div><div class="tooltip_row"><span class="tooltip_label">${this.points[1].series.name.replace(' countries', '')}: </span><br /><span class="tooltip_value">${this.points[1].y} countries, 2012–2014</span><br /><span class="tooltip_value">${this.points[3].y} countries, 2019–2021</span></div></div>`;
+          return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">${this.points[0].series.name}: </span><br /><span class="tooltip_value">${this.points[0].y} ${xlabel}, 2012–2014</span><br /><span class="tooltip_value">${this.points[2].y} ${xlabel}, 2019–2021</span></div><div class="tooltip_row"><span class="tooltip_label">${this.points[1].series.name}: </span><br /><span class="tooltip_value">${this.points[1].y} ${xlabel}, 2012–2014</span><br /><span class="tooltip_value">${this.points[3].y} ${xlabel}, 2019–2021</span></div></div>`;
         },
         padding: 0,
         shadow: false,
@@ -261,7 +261,7 @@ function StackedColumnChart({
           description: xlabel
         },
         allowDecimals: false,
-        categories: ['Education', 'Health'],
+        categories: xcategories,
         crosshair: {
           color: 'transparent',
           width: 1
@@ -323,7 +323,7 @@ function StackedColumnChart({
           enabled: true,
           formatter() {
             // eslint-disable-next-line react/no-this-in-sfc
-            return `${this.total} countries`;
+            return `${this.total} ${xlabel}`;
           },
           style: {
             color: 'rgba(0, 0, 0, 0.8)',
@@ -350,7 +350,7 @@ function StackedColumnChart({
       }
     });
     chartRef.current.querySelector(`#chartIdx${idx}`).style.opacity = 1;
-  }, [data, idx, note, source, subtitle, title, xlabel, ylabel, ymax, ymin]);
+  }, [data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin]);
 
   useEffect(() => {
     if (isVisible === true) {
@@ -377,6 +377,7 @@ StackedColumnChart.propTypes = {
   source: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
+  xcategories: PropTypes.instanceOf(Array).isRequired,
   xlabel: PropTypes.string,
   ylabel: PropTypes.string,
   ymax: PropTypes.number,
@@ -386,7 +387,7 @@ StackedColumnChart.propTypes = {
 StackedColumnChart.defaultProps = {
   note: false,
   subtitle: false,
-  xlabel: 'Year',
+  xlabel: '',
   ylabel: '',
   ymax: undefined,
   ymin: undefined

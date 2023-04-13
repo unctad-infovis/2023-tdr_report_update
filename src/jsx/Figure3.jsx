@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { transpose } from 'csv-transpose';
 
@@ -8,7 +9,7 @@ import ChartStackedColumn from './components/ChartStackedColumn2.jsx';
 
 import '../styles/styles.less';
 
-function Figure3() {
+function Figure3({ lang }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -25,7 +26,7 @@ function Figure3() {
   });
 
   useEffect(() => {
-    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-tdr_report_update/' : './'}assets/data/2023-tdr_report_update_figure3.csv`;
+    const data_file = `${(window.location.href.includes('unctad.org')) ? 'https://storage.unctad.org/2023-tdr_report_update/' : './'}assets/data/2023-tdr_report_update_figure3_${lang}.csv`;
     try {
       fetch(data_file)
         .then((response) => {
@@ -38,29 +39,40 @@ function Figure3() {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [lang]);
 
   return (
     <div className="app">
       {dataFigure && (
       <ChartStackedColumn
-        idx="3"
         data={dataFigure}
+        data_decimals={0}
+        idx="3"
+        lang={lang}
         note=""
         show_first_label
-        source="UNCTAD"
-        data_decimals={0}
-        subtitle="Average growth rate 2002–2022"
+        source={lang === 'fr' ? '<em>Source:</em> CNUCED' : (lang === 'es' ? '<em>Fuente:</em> UNCTAD' : '<em>Source:</em> UNCTAD')}
+        subtitle={lang === 'fr' ? 'Taux de croissance moyens, 2002–2022' : (lang === 'es' ? 'Tasa media de crecimiento 2002-2022' : 'Average growth rate 2002–2022')}
         suffix=""
-        title="Economic growth rate is falling in all regions"
-        ymin={0}
-        ymax={12}
+        title={lang === 'fr' ? 'Le taux de croissance économique diminue dans toutes les régions' : (lang === 'es' ? 'La tasa de crecimiento económico desciende en todas las regiones' : 'Economic growth rate is falling in all regions')}
+        xcategories={lang === 'fr' ? ['Monde', 'Pays en développement (sans la  Chine)', 'Chine'] : (lang === 'es' ? ['Mundo', 'Economías en desarrollo (excluida China)', 'China'] : ['World', 'Developing economies (excl. China)', 'China'])}
+        xlabel={lang === 'fr' ? 'Année' : (lang === 'es' ? 'Año' : 'Year')}
         ylabel=""
+        ymax={14}
+        ymin={0}
       />
       )}
       <noscript>Your browser does not support JavaScript!</noscript>
     </div>
   );
 }
+
+Figure3.propTypes = {
+  lang: PropTypes.string
+};
+
+Figure3.defaultProps = {
+  lang: 'en'
+};
 
 export default Figure3;
