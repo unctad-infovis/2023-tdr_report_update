@@ -69,7 +69,7 @@ Figure1.propTypes = {
 };
 
 Figure1.defaultProps = {
-  lang: 'fr'
+  lang: 'en'
 };
 
 export default Figure1;

@@ -71,7 +71,6 @@ function LineChart({
           }
         },
         height: chartHeight,
-        marginRight: 80,
         resetZoomButton: {
           theme: {
             fill: '#fff',
