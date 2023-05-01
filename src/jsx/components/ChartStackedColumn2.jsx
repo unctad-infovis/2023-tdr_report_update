@@ -238,8 +238,6 @@ function StackedColumnChart({
         crosshairs: true,
         formatter() {
           // eslint-disable-next-line react/no-this-in-sfc
-          console.log(this);
-          // eslint-disable-next-line react/no-this-in-sfc
           return `<div class="tooltip_container"><h3 class="tooltip_header">${this.x}</h3><div class="tooltip_row"><span class="tooltip_label">2003–2007:</span> <span class="tooltip_value">${this.points[0].y}</span></div><div class="tooltip_row"><span class="tooltip_label">2015–2019:</span> <span class="tooltip_value">${this.points[1].y}</span></div><div class="tooltip_row"><span class="tooltip_label">2020–2022:</span> <span class="tooltip_value">${this.points[2].y}</span></div></div>`;
         },
         shadow: false,
