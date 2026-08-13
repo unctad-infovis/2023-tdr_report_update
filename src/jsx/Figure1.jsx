@@ -7,7 +7,7 @@ import ChartStackedColumn from './components/ChartStackedColumn.jsx';
 
 import '../styles/styles.less';
 
-function Figure1({ lang }) {
+function Figure1({ lang = 'en' }) {
   // Data states.
   const [dataFigure, setDataFigure] = useState(false);
 
@@ -66,10 +66,6 @@ function Figure1({ lang }) {
 
 Figure1.propTypes = {
   lang: PropTypes.string
-};
-
-Figure1.defaultProps = {
-  lang: 'en'
 };
 
 export default Figure1;

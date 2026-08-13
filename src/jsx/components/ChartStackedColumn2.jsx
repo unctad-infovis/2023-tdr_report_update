@@ -41,7 +41,7 @@ Highcharts.SVGRenderer.prototype.symbols.download = (x, y, w, h) => {
 };
 
 function StackedColumnChart({
-  data, idx, note, source, subtitle, title, xcategories, xlabel, ylabel, ymax, ymin
+  data, idx, note = false, source, subtitle = false, title, xcategories, xlabel = 'Year', ylabel = '', ymax = undefined, ymin = undefined
 }) {
   data = data.filter((val) => (val.name !== ''));
   const chartRef = useRef();
@@ -369,15 +369,6 @@ StackedColumnChart.propTypes = {
   ylabel: PropTypes.string,
   ymax: PropTypes.number,
   ymin: PropTypes.number
-};
-
-StackedColumnChart.defaultProps = {
-  note: false,
-  subtitle: false,
-  xlabel: 'Year',
-  ylabel: '',
-  ymax: undefined,
-  ymin: undefined
 };
 
 export default StackedColumnChart;
